@@ -1,0 +1,26 @@
+﻿<RibbonWindow x:Class="PennyWatch.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://www.codeplex.com/prism"
+        Title="MainWindow" Height="350" Width="525">
+
+    <!-- Layout Root -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="RibbonRow" Height="Auto"/>
+            <RowDefinition x:Name="WorkspaceRow" Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Application Ribbon -->
+        <Ribbon Grid.Row="0"
+            prism:RegionManager.RegionName="RibbonRegion">
+
+        </Ribbon>
+
+        <!-- Workspace Area -->
+        <ContentControl x:Name="WorkspaceRegion" Grid.Row="1"
+                        prism:RegionManager.RegionName="WorkspaceRegion"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+    </Grid>
+</RibbonWindow>
