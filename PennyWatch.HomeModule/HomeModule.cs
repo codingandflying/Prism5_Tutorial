@@ -1,9 +1,8 @@
-﻿using PennyWatch.CommonModule;
-using Microsoft.Practices.Prism.Modularity;
+﻿using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
-using System;
+using System.Configuration;
 
 namespace PennyWatch.HomeModule
 {
@@ -25,11 +24,14 @@ namespace PennyWatch.HomeModule
 
         public void Initialize()
         {
-            _RegionManager.RegisterViewWithRegion("RibbonRegion", typeof(Views.HomeModuleRibbonTabView));
+            string ribbonRegionName = ConfigurationManager.AppSettings["RibbonRegionName"];
+            string workspaceRegionName = ConfigurationManager.AppSettings["WorkspaceRegionName"];
 
-            _RegionManager.Regions["WorkspaceRegion"].Add(new Views.HomeModuleWorkspaceView(), "HomeModuleWorkspaceView");
+            _RegionManager.RegisterViewWithRegion(ribbonRegionName, typeof(Views.HomeModuleRibbonTabView));
 
-            _RegionManager.RequestNavigate("WorkspaceRegion", "HomeModuleWorkspaceView");
+            _RegionManager.Regions[workspaceRegionName].Add(new Views.HomeModuleWorkspaceView(), Settings.Default.WorkspaceViewName);
+
+            _RegionManager.RequestNavigate(workspaceRegionName, Settings.Default.WorkspaceViewName);
 
         }
     }

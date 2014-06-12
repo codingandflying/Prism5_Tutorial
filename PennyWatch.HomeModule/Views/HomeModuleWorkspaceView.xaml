@@ -1,16 +1,24 @@
-﻿<UserControl x:Class="PennyWatch.HomeModule.Views.HomeModuleWorkspaceView"
+﻿<bt:WorkspaceViewBase
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:bt="clr-namespace:PennyWatch.CommonModule.BaseTypes;assembly=CommonModule"
+             xmlns:ViewModels="clr-namespace:PennyWatch.HomeModule.ViewModels" 
+             x:Class="PennyWatch.HomeModule.Views.HomeModuleWorkspaceView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
+    <bt:WorkspaceViewBase.DataContext>
+        <ViewModels:HomeModuleWorkspaceViewModel x:Name="_ViewModel"/>
+    </bt:WorkspaceViewBase.DataContext>
+
     <Grid Background="Blue">
         <TextBlock Text="Home Module Workspace View"
-                   FontSize="36"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" 
-                   TextWrapping="Wrap"/>
+			FontSize="36"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center" 
+			TextWrapping="Wrap"/>
 
     </Grid>
-</UserControl>
+</bt:WorkspaceViewBase>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Practices.Prism.Modularity;
 using Microsoft.Practices.Prism.UnityExtensions;
+using System.Configuration;
 using System.Windows;
 
 namespace PennyWatch

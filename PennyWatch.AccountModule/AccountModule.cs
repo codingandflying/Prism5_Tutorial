@@ -2,6 +2,7 @@
 using Microsoft.Practices.Prism.PubSubEvents;
 using Microsoft.Practices.Prism.Regions;
 using Microsoft.Practices.Unity;
+using System.Configuration;
 
 namespace PennyWatch.AccountModule
 {
@@ -19,13 +20,16 @@ namespace PennyWatch.AccountModule
             _Container = container;
             _RegionManager = regionManager;
             _EventAggregator = eventAggregator;
-        }   
-        
+        }
+
         public void Initialize()
         {
-            _RegionManager.RegisterViewWithRegion("RibbonRegion", typeof(Views.AccountModuleRibbonTabView));
-            
-            _RegionManager.Regions["WorkspaceRegion"].Add(new Views.AccountModuleWorkspaceView(), "AccountModuleWorkspaceView");
+            string ribbonRegionName = ConfigurationManager.AppSettings["RibbonRegionName"];
+            string workspaceRegionName = ConfigurationManager.AppSettings["WorkspaceRegionName"];
+
+            _RegionManager.RegisterViewWithRegion(ribbonRegionName, typeof(Views.AccountModuleRibbonTabView));
+
+            _RegionManager.Regions[workspaceRegionName].Add(new Views.AccountModuleWorkspaceView(), Settings.Default.WorkspaceViewName);
         }
     }
 }
